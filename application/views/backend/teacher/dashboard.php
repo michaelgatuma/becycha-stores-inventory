@@ -1,64 +1,96 @@
  <!--row -->
  <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="white-box">
-                            <div class="r-icon-stats">
-                                <i class="ti-user bg-megna"></i>
-                                <div class="bodystate">
-                                    <h4><?php echo $this->db->count_all_results('student');?></h4>
-                                    <span class="text-muted"><?php echo get_phrase('student');?></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="col-md-3 col-sm-6">
                         <div class="white-box">
                             <div class="r-icon-stats">
                                 <i class="ti-user bg-info"></i>
                                 <div class="bodystate">
-                                    <h4><?php echo $this->db->count_all_results('parent');?></h4>
-                                    <span class="text-muted"><?php echo get_phrase('parent');?></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="white-box">
-                            <div class="r-icon-stats">
-                                <i class="ti-user bg-success"></i>
-                                <div class="bodystate">
                                     <h4><?php echo $this->db->count_all_results('teacher');?></h4>
-                                    <span class="text-muted"><?php echo get_phrase('all_teachers');?></span>
+                                    <span class="text-muted"><?php echo get_phrase('Employees');?></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
+
                     <div class="col-md-3 col-sm-6">
                         <div class="white-box">
                             <div class="r-icon-stats">
-                                <i class="ti-wallet bg-inverse"></i>
+                                <i class="ti-money bg-megna"></i>
                                 <div class="bodystate">
-                                    <h4>
-                                    <?php 
-
-                                    $check_daily_attendance = array('date' => date('Y-m-d'), 'status' => '1');
-                                    $get_attendance_information = $this->db->get_where('attendance', $check_daily_attendance);
-                                    $display_attendance_here = $get_attendance_information->num_rows();
-                                    echo $display_attendance_here;
-                                    ?>
-                                    
-                                    </h4>
-                                    <span class="text-muted"><?php echo get_phrase('Attendance');?></span>
+                                <?php 
+                                $this->db->select_sum('amount');
+                                $this->db->from('payment');
+                                $this->db->where('expense_category_id', '9');
+                                $query = $this->db->get();
+                                $expense_amount = $query->row()->amount;
+                                ?>
+                                    <h4><?php echo $this->db->get_where('settings', array('type' => 'currency'))->row()->description;?> <?php echo $expense_amount;?></h4>
+                                    <span class="text-muted"><?php echo get_phrase('Total Sales');?></span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="white-box">
+                            <div class="r-icon-stats">
+                                <i class="ti-money bg-info"></i>
+                                <div class="bodystate">
 
-
+                                <?php 
+                                $this->db->select_sum('amount');
+                                $this->db->from('payment');
+                                $this->db->where('expense_category_id', '8');
+                                $query = $this->db->get();
+                                $income_amount = $query->row()->amount; ?>
+                                    <h4>
+                                    <?php echo $this->db->get_where('settings', array('type' => 'currency'))->row()->description;?> <?php echo $income_amount;?>
+                                    </h4>
+                                    <span class="text-muted"><?php echo get_phrase('Total Deliveries');?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="white-box">
+                            <div class="r-icon-stats">
+                                <i class="ti-money bg-megna"></i>
+                                <div class="bodystate">
+                                <?php 
+                                $this->db->select_sum('amount');
+                                $this->db->from('payment');
+                                $this->db->where('expense_category_id', '11');
+                                $query = $this->db->get();
+                                $expense_amount = $query->row()->amount;
+                                ?>
+                                    <h4><?php echo $this->db->get_where('settings', array('type' => 'currency'))->row()->description;?> <?php echo $expense_amount;?></h4>
+                                    <span class="text-muted"><?php echo get_phrase('Other Expenses');?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="white-box">
+                            <div class="r-icon-stats">
+                                <i class="ti-wallet bg-success"></i>
+                                <div class="bodystate">
+                                    <h4><?php echo $this->db->count_all_results('admin');?></h4>
+                                    <span class="text-muted"><?php echo get_phrase('Admin');?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
-
             </div>
+
+
+
+
+
+
+
+
                 <!--/row -->
                 <!-- .row -->
                 <div class="row">
@@ -67,81 +99,99 @@
                             <div class="stats-row">
 
 
-                                <!-- Styles -->
-                                <style>
-                                #chartdiv1 {
-                                width: 100%;
-                                height: 500px;
-                                }
+<marquee behavior="alternate">
 
-                                .amcharts-chart-div a{
-                                    display:none !important;
-                                }	
+                            <h3 class="box-title m-b-0"><?php echo get_phrase('Sales&Deliveries Report with Other more Features>>>>Coming soon!!!!');?></h3>
 
-                                </style>
 
-                                <!-- Chart code -->
-                                <script>
-                                am4core.ready(function() {
 
-                                // Themes begin
-                                am4core.useTheme(am4themes_animated);
-                                // Themes end
+</marquee>
 
-                                // Create chart instance
-                                var chart = am4core.create("chartdiv1", am4charts.PieChart);
 
-                                // Add data
-                                chart.data = [
-                    
-                    <?php $selects = $this->db->get('attendance')->result_array(); //$this->crud_model->get_invoice_info();
-                            foreach ($selects as $key => $select):?>
 
-                                {
-                                "country": "<?php echo $this->crud_model->get_type_name_by_id('student', $select['student_id']);?>",
-                                "litres": <?= $this->db->get_where('student', array('student_id' => $select['student_id']))->num_rows();?>
-                                }, 
-                    <?php endforeach;?>
-                                
-                                ];
 
-                                // Add and configure Series
-                                var pieSeries = chart.series.push(new am4charts.PieSeries());
-                                pieSeries.dataFields.value = "litres";
-                                pieSeries.dataFields.category = "country";
-                                pieSeries.innerRadius = am4core.percent(50);
-                                pieSeries.ticks.template.disabled = true;
-                                pieSeries.labels.template.disabled = true;
+                            
 
-                                var rgm = new am4core.RadialGradientModifier();
-                                rgm.brightnesses.push(-0.8, -0.8, -0.5, 0, - 0.5);
-                                pieSeries.slices.template.fillModifier = rgm;
-                                pieSeries.slices.template.strokeModifier = rgm;
-                                pieSeries.slices.template.strokeOpacity = 0.4;
-                                pieSeries.slices.template.strokeWidth = 0;
+                            <div class="row">
+                    <div class="col-sm-12">
+				  	<div class="panel panel-info">
+                            <div class="panel-heading"> <i class="fa fa-list"></i>&nbsp;&nbsp;<?php echo get_phrase('list_of Total Sales');?></div>
+                            <div class="panel-wrapper collapse in" aria-expanded="true">
+                                <div class="panel-body table-responsive">
+								
+ 			<table id="example23" class="display nowrap" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+     
+            <th><div>#</div></th>
+            <th><div><?php echo get_phrase('RGB');?></div></th>
+            <th><div><?php echo get_phrase('PET(plastic)');?></div></th>
+            <th><div><?php echo get_phrase('Energy Drink');?></div></th>
+            <th><div><?php echo get_phrase('Juice_Minutemaid');?></div></th>
+            <th><div><?php echo get_phrase('Water');?></div></th>
+            <th><div><?php echo get_phrase('Total(crates)');?></div></th>
+            <th><div><?php echo get_phrase('empties');?></div></th>
+            <th><div><?php echo get_phrase('Amount_Recieved');?></div></th>
+           
+            
+        </tr>
+    </thead>
+    <tbody>
 
-                                chart.legend = new am4charts.Legend();
-                                chart.legend.position = "right";
+    <?php $count = 1; foreach ($select_RGB as $key => $RGB): ?>
+	
+        <tr>
+            <td><?php echo $count++; ?></td>
+            <td><?php $this->db->select_sum('amount');?></td>
+            
+            <td>
+            <?php 
+            if($expense['expense_category_id']!= 0 || $expense['expense_category_id']!= '')
+            echo $this->db->get_where('expense_category', array('expense_category_id' => $expense['expense_category_id']))->row()->name;
+            ?>
+            </td>
 
-                                }); // end am4core.ready()
-                                </script>
+            <td>
+            
+            <?php 
 
-                                <!-- HTML -->
-                                <div id="chartdiv1"></div>
+                if($expense['method'] == 1)
+                echo get_phrase('cash');   
+                if($expense['method'] == 2)
+                echo get_phrase('cheque'); 
+                if($expense['method'] == 3)
+                echo get_phrase('card');           
+            ?>
+            
+            </td>
 
-                               
-                            </div>
-                        </div>
-                    </div>
-                   
-                    
-                </div>
-                <!-- /.row -->
-               
-                <div class="row">
-                    <div class="col-sm-6">
+            <td><?php echo $expense['amount'];?></td>
+            <td><?php echo $expense['timestamp'];?></td>
+            <td><?php echo $expense['description'];?></td>
+
+            <td>
+            
+            <a onclick="showAjaxModal('<?php echo base_url();?>modal/popup/edit_expense/<?php echo $expense['payment_id'];?>')" class="btn btn-info btn-circle btn-xs"><i class="fa fa-edit"></i></a>
+            <a onclick="confirm_modal('<?php echo base_url();?>expense/expense/delete/<?php echo $expense['payment_id'];?>')" class="btn btn-danger btn-circle btn-xs" style="color:white"><i class="fa fa-times"></i></a>
+            
+            </td>
+        </tr>
+
+     <?php endforeach;?>
+    </tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
                         <div class="white-box">
-                            <h3 class="box-title m-b-0"><?php echo get_phrase('Recently Added Teachers');?></h3>
+                            <h3 class="box-title m-b-0"><?php echo get_phrase('Recently Added Employees');?></h3>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -169,35 +219,5 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="white-box">
-                            <h3 class="box-title m-b-0"><?php echo get_phrase('Recently Added Students');?></h3>
-                            <div class="table-responsive">
-                            <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Image</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                            <?php $get_student_from_model = $this->crud_model->list_all_student_and_order_with_student_id();
-                                    foreach ($get_student_from_model as $key => $student):?>
-                                            <td><img src="<?php echo $student['face_file'];?>" class="img-circle" width="40px"></td>
-                                            <td><?php echo $student['name'];?></td>
-                                            <td><?php echo $student['email'];?></td>
-                                            <td><?php echo $student['phone'];?></td>
-                                        </tr>
-                                    <?php endforeach;?>
-                                       
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  
                 <!-- /.row -->

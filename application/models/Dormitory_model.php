@@ -8,7 +8,7 @@ class Dormitory_model extends CI_Model {
         parent::__construct();
     }
 
-     // The function below insert into dormitory table //
+     // The function below insert into becyhastores table //
      function createDormitoryFunction(){
         $page_data = array(
             'name'                  => html_escape($this->input->post('name')),
@@ -19,10 +19,10 @@ class Dormitory_model extends CI_Model {
             'description'            => html_escape($this->input->post('description'))
 		);
 
-        $this->db->insert('dormitory', $page_data);
+        $this->db->insert('becyhastores', $page_data);
     }
 
-// The function below update dormitory table //
+// The function below update becyhastores table //
     function updateDormitoryFunction($param2){
         $page_data = array(
             'name'                  => html_escape($this->input->post('name')),
@@ -34,13 +34,13 @@ class Dormitory_model extends CI_Model {
 		);
 
         $this->db->where('dormitory_id', $param2);
-        $this->db->update('dormitory', $page_data);
+        $this->db->update('becyhastores', $page_data);
     }
 
-    // The function below delete from dormitory table //
+    // The function below delete from becyhastores table //
     function deleteDormitoryFunction($param2){
         $this->db->where('dormitory_id', $param2);
-        $this->db->delete('dormitory');
+        $this->db->delete('becyhastores');
     }
 
 

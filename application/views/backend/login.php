@@ -36,6 +36,15 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
 <!-- Preloader -->
 <div class="preloader">
   <div class="cssload-speeding-wheel"></div>
+    /the div element with the specified class will display as a spinning wheel animation. This can be useful for indicating to the user that the webpage is loading or processing information, providing visual feedback and improving user experience.
+    */
+</div>
+
+<div>
+  <h1> BENCYHA STOCK AND SALES MANAGEMENT SYSTEM </h1>
+
+
+
 </div>
 <section id="wrapper" class="login-register">
   <div class="login-box login-sidebar">
@@ -56,7 +65,7 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12" >
-                            <input class="form-control" type="password" name="password" required="" placeholder="<?php echo get_phrase('passord');?>" style="width:100%">
+                            <input class="form-control" type="password" name="password" required="" placeholder="<?php echo get_phrase('password');?>" style="width:100%">
                         </div>
                     </div>
 					
@@ -86,7 +95,7 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
             	<form method="post" role="form" id="recoverform" class="form-horizontal form-material"  action="<?php echo base_url();?>login/reset_password">
                 <input type="email" name="email" class="form-control" placeholder="<?php echo get_phrase('email');?>" style="width:100%" required>
 
-<div class="form-group text-center m-t-20">
+<div class="form-group text-center m-t-20"> //anything writen in class is bootstrap
                         <div class="col-xs-6">
 		<a href="<?php echo base_url();?>"><button class="btn btn-info btn-rounded btn-sm text-uppercase" type="button" style="color:white"><i class="fa fa-mail-reply-all"></i>&nbsp;<?php echo get_phrase('back_to_login');?></button></a>
 		<button class="btn btn-success btn-rounded btn-sm  text-uppercase" type="submit" style="color:white"><i class="fa fa-key"></i>&nbsp;<?php echo get_phrase('reset_password');?></button>
@@ -97,7 +106,7 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
             </div>
         </div>
 	
-    </section>
+    </section> //end of login page
 <script src="js/index.js"></script>	
 
 

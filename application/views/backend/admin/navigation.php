@@ -1,5 +1,5 @@
     <!-- Left navbar-header -->
-        <div class="navbar-default sidebar" role="navigation">
+    <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
                 <ul class="nav" id="side-menu">
                     <li class="sidebar-search hidden-sm hidden-md hidden-lg">
@@ -52,59 +52,53 @@
      <!---  Permission for Admin Manage Academics starts here ------>
      <?php $check_admin_permission = $this->db->get_where('admin_role', array('admin_id' => $this->session->userdata('login_user_id')))->row()->manage_academics;?>
      <?php if($check_admin_permission == '1'):?>   
-        <li> <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-mortar-board" data-icon="7"></i> <span class="hide-menu"> <?php echo get_phrase('Manage Academics');?> <span class="fa arrow"></span></span></a>
+        <li> <a href="javascript:void(0);" class="waves-effect"><<i data-icon="&#xe006;" class="fa fa-fax p-r-10"></i> <span class="hide-menu"> <?php echo get_phrase('New Sales');?> <span class="fa arrow"></span></span></a>
                         <ul class=" nav nav-second-level<?php
-            if (    $page_name == 'enquiry_category'||
+            if (    $page_name == 'Pet'||
                     $page_name == 'list_enquiry'||
-                    $page_name == 'club'|| $page_name == 'noticeboard' ||
-                    $page_name == 'circular'||
-                    $page_name == 'academic_syllabus') echo 'opened active';
+                    $page_name == 'RGB'|| $page_name == 'water' ||
+                    $page_name == 'energy_drink'||
+                    $page_name == 'juice') echo 'opened active';
             ?> ">
                             
-        <li class="<?php if ($page_name == 'enquiry_category') echo 'active';?>"> 
+        <li class="<?php if ($page_name == 'Pet') echo 'active';?>"> 
 
-            <a href="<?php echo base_url();?>admin/enquiry_category">
+            <a href="<?php echo base_url();?>admin/Pet">
                 <i class="fa fa-angle-double-right p-r-10"></i>
-                <span class="hide-menu"><?php echo get_phrase('Equiry Category');?></span>
+                <span class="hide-menu"><?php echo get_phrase('PET(Plastic)');?></span>
 
             </a> 
         </li>
 
-       <li class="<?php if ($page_name == 'enquiry') echo 'active'; ?> ">
-                <a href="<?php echo base_url(); ?>admin/list_enquiry">
+      
+        <li class="<?php if ($page_name == 'RGB') echo 'active'; ?>">
+                <a href="<?php echo base_url(); ?>admin/RGB">
                 <i class="fa fa-angle-double-right p-r-10"></i>
-                      <span class="hide-menu"><?php echo get_phrase('list_enquiries'); ?></span>
+                      <span class="hide-menu"><?php echo get_phrase('RGB'); ?></span>
                 </a>
         </li>
 
-        <li class="<?php if ($page_name == 'club') echo 'active'; ?>">
-                <a href="<?php echo base_url(); ?>admin/club">
+        <li class="<?php if ($page_name == 'energy_drink') echo 'active'; ?> ">
+                <a href="<?php echo base_url(); ?>admin/energy_drink">
                 <i class="fa fa-angle-double-right p-r-10"></i>
-                      <span class="hide-menu"><?php echo get_phrase('school_clubs'); ?></span>
-                </a>
-        </li>
-
-        <li class="<?php if ($page_name == 'circular') echo 'active'; ?> ">
-                <a href="<?php echo base_url(); ?>admin/circular">
-                <i class="fa fa-angle-double-right p-r-10"></i>
-                 <span class="hide-menu"> <?php echo get_phrase('manage_circular'); ?></span>
+                 <span class="hide-menu"> <?php echo get_phrase('Energy Drink'); ?></span>
                 </a>
         </li>
 
          
 
-         <li class="<?php if ($page_name == 'academic_syllabus') echo 'active'; ?>">
-                <a href="<?php echo base_url(); ?>admin/academic_syllabus">
+         <li class="<?php if ($page_name == 'juice') echo 'active'; ?>">
+                <a href="<?php echo base_url(); ?>admin/juice">
                 <i class="fa fa-angle-double-right p-r-10"></i>
-                     <span class="hide-menu"><?php echo get_phrase('syllabus'); ?></span>
+                     <span class="hide-menu"><?php echo get_phrase('Juice MinuteMaid'); ?></span>
                 </a>
         </li>
 		
 		
-                <li class="<?php if ($page_name == 'noticeboard') echo 'active'; ?> ">
-                <a href="<?php echo base_url(); ?>admin/noticeboard">
+                <li class="<?php if ($page_name == 'water') echo 'active'; ?> ">
+                <a href="<?php echo base_url(); ?>admin/water">
                 <i class="fa fa-angle-double-right p-r-10"></i>
-                   <span class="hide-menu"><?php echo get_phrase('manage_events'); ?></span>
+                   <span class="hide-menu"><?php echo get_phrase('Water'); ?></span>
                 </a>
             </li>
                            
@@ -116,31 +110,7 @@
 
 
 
-    <!---  Permission for Admin Manage Employee starts here ------>
-    <?php $check_admin_permission = $this->db->get_where('admin_role', array('admin_id' => $this->session->userdata('login_user_id')))->row()->manage_employee;?>
-    <?php if($check_admin_permission == '1'):?> 
-
-        <li class="staff"> <a href="javascript:void(0);" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-angle-double-right p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('Manage Employees');?><span class="fa arrow"></span></span></a>
-        
-                        <ul class=" nav nav-second-level<?php if ($page_name == 'teacher')echo 'opened active';?> ">
-
-							<li class="<?php if ($page_name == 'department') echo 'active'; ?> ">
-								<a href="<?php echo base_url(); ?>department/department">
-								<i class="fa fa-angle-double-right p-r-10"></i>
-									 <span class="hide-menu"><?php echo get_phrase('department'); ?></span>
-								</a>
-							</li>
-							<li class="<?php if ($page_name == 'teacher') echo 'active'; ?> ">
-								<a href="<?php echo base_url(); ?>admin/teacher">
-								<i class="fa fa-angle-double-right p-r-10"></i>
-									 <span class="hide-menu"><?php echo get_phrase('teachers'); ?></span>
-								</a>
-							</li>
-
-                 		</ul>
-   	 </li>
-    <?php endif;?> <!---  Permission for Admin Manage Employee ends here ------>
-
+    
 
 
 
@@ -150,64 +120,61 @@
     <?php $check_admin_permission = $this->db->get_where('admin_role', array('admin_id' => $this->session->userdata('login_user_id')))->row()->manage_student;?>
     <?php if($check_admin_permission == '1'):?>          
                 
-        <li class="student"> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-users p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('manage_students');?><span class="fa arrow"></span></span></a>
+        <li class="student"> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-users p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('New Deliveries');?><span class="fa arrow"></span></span></a>
         
                         <ul class=" nav nav-second-level<?php
-            if ($page_name == 'new_student' ||
+            if ($page_name == 'pet_del' ||
                     $page_name == 'student_class' ||
-                    $page_name == 'student_information' ||
+                    $page_name == 'rgb_del' ||
                     $page_name == 'view_student' ||
+                    $page_name == 'Drink_energy' ||
                     $page_name == 'searchStudent')
                 echo 'opened active has-sub';
             ?> ">
 
 
                         
-                    <li class="<?php if ($page_name == 'new_student') echo 'active'; ?> ">
-                        <a href="<?php echo base_url(); ?>admin/new_student">
+                    <li class="<?php if ($page_name == 'pet_del') echo 'active'; ?> ">
+                        <a href="<?php echo base_url(); ?>admin/pet_del">
                         <i class="fa fa-angle-double-right p-r-10"></i>
-                              <span class="hide-menu"><?php echo get_phrase('admission_form'); ?></span>
+                              <span class="hide-menu"><?php echo get_phrase('Pet(Plastic)'); ?></span>
+                        </a>
+                    </li>
+
+
+                    <li class="<?php if ($page_name == 'rgb_del') echo 'active'; ?> ">
+                        <a href="<?php echo base_url(); ?>admin/rgb_del">
+                        <i class="fa fa-angle-double-right p-r-10"></i>
+                              <span class="hide-menu"><?php echo get_phrase('RGB'); ?></span>
                         </a>
                     </li>
 
 
                     
-                     <li class="<?php if ($page_name == 'student_information' || $page_name == 'student_information' || $page_name == 'view_student') echo 'active'; ?> ">
-                        <a href="<?php echo base_url(); ?>admin/student_information">
-                        <i class="fa fa-angle-double-right p-r-10"></i>
-                              <span class="hide-menu"><?php echo get_phrase('list_students'); ?></span>
-                        </a>
-                    </li>
 
 
-    <li class="<?php if ($page_name == 'studentCategory') echo 'active'; ?> ">
-                        <a href="<?php echo base_url(); ?>studentcategory/studentCategory">
+    <li class="<?php if ($page_name == 'Drink_energy') echo 'active'; ?> ">
+                        <a href="<?php echo base_url(); ?>admin/Drink_energy">
                         <i class="fa fa-angle-double-right p-r-10"></i>
-                             <span class="hide-menu"><?php echo get_phrase('Student Categories'); ?></span>
+                             <span class="hide-menu"><?php echo get_phrase('Energy Drink'); ?></span>
                         </a>
      </li>
      
-     <li class="<?php if ($page_name == 'studentHouse') echo 'active'; ?> ">
-                        <a href="<?php echo base_url(); ?>studenthouse/studentHouse">
+     <li class="<?php if ($page_name == 'minute') echo 'active'; ?> ">
+                        <a href="<?php echo base_url(); ?>admin/minute">
                         <i class="fa fa-angle-double-right p-r-10"></i>
-                             <span class="hide-menu"><?php echo get_phrase('Student House'); ?></span>
+                             <span class="hide-menu"><?php echo get_phrase('Juice MinuteMaid'); ?></span>
                         </a>
      </li>
      
-     <li class="<?php if ($page_name == 'clubActivity') echo 'active'; ?> ">
-                        <a href="<?php echo base_url(); ?>activity/clubActivity">
+     <li class="<?php if ($page_name == 'maji') echo 'active'; ?> ">
+                        <a href="<?php echo base_url(); ?>admin/maji">
                         <i class="fa fa-angle-double-right p-r-10"></i>
-                             <span class="hide-menu"><?php echo get_phrase('Student Activity'); ?></span>
+                             <span class="hide-menu"><?php echo get_phrase('Water'); ?></span>
                         </a>
      </li>
      
-     <li class="<?php if ($page_name == 'socialCategory') echo 'active'; ?> ">
-                        <a href="<?php echo base_url(); ?>socialcategory/socialCategory">
-                        <i class="fa fa-angle-double-right p-r-10"></i>
-                             <span class="hide-menu"><?php echo get_phrase('Social Category'); ?></span>
-                        </a>
-     </li>
-        
+     
      
                  </ul>
     </li>
@@ -219,7 +186,7 @@
 
     <!---  Permission for Admin Manage Attendance starts here ------>
     <?php $check_admin_permission = $this->db->get_where('admin_role', array('admin_id' => $this->session->userdata('login_user_id')))->row()->manage_attendance;?>
-    <?php if($check_admin_permission == '1'):?> 
+    <?php if($check_admin_permission == '0'):?> 
 
         <li class="attendance"> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-hospital-o p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('manage_attendance');?><span class="fa arrow"></span></span></a>
         
@@ -228,7 +195,7 @@
                         
 
                     <li class="<?php if ($page_name == 'manage_attendance') echo 'active'; ?> ">
-                        <a href="<?php echo base_url(); ?>admin/manage_attendance/<?php echo date("d/m/Y"); ?>">
+                       <a href="<?php echo base_url(); ?>admin/manage_attendance/<?php echo date("d/m/Y"); ?>">
                         <i class="fa fa-angle-double-right p-r-10"></i>
                               <span class="hide-menu"><?php echo get_phrase('mark_attendance'); ?></span>
                         </a>
@@ -253,7 +220,7 @@
 
     <!---  Permission for Admin Manage Download Page starts here ------>
     <?php $check_admin_permission = $this->db->get_where('admin_role', array('admin_id' => $this->session->userdata('login_user_id')))->row()->download_page;?>
-    <?php if($check_admin_permission == '1'):?> 
+    <?php if($check_admin_permission == '0'):?> 
 
         <li> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-download p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('download_page');?><span class="fa arrow"></span></span></a>
         
@@ -290,7 +257,7 @@
 
     <!---  Permission for Admin Download Parent Page starts here ------>
     <?php $check_admin_permission = $this->db->get_where('admin_role', array('admin_id' => $this->session->userdata('login_user_id')))->row()->manage_parent;?>
-    <?php if($check_admin_permission == '1'):?> 
+    <?php if($check_admin_permission == '0'):?> 
 
         <li class=" <?php if($page_name == 'parent')echo 'active';?>">
                     <a href="<?php echo base_url();?>admin/parent" >
@@ -304,7 +271,7 @@
 
    
 
-                
+       <!--         
         <li> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-university p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('class_information');?><span class="fa arrow"></span></span></a>
         
             <ul class=" nav nav-second-level<?php
@@ -336,19 +303,33 @@
            
                  </ul>
                 </li>
-
+    -->
                 
-
+<!--
 
 
                          <li class="<?php if ($page_name == 'subject') echo 'active'; ?>">
                             <a href="<?php echo base_url(); ?>subject/subject/">
                             <i class="fa fa-book p-r-10"></i>
-                                 <span class="hide-menu"><?php echo get_phrase('manage_subjects'); ?></span>
+                                 <span class="hide-menu"><?php echo get_phrase('Manage Product'); ?></span>
                             </a>
                         </li>
+    -->
+
+
+
+
+
 
          
+
+<!--
+
+
+
+
+
+
          <li> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-medkit p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('manage_exams');?><span class="fa arrow"></span></span></a>
         
         <ul class=" nav nav-second-level<?php
@@ -364,12 +345,12 @@
                         </a>
                     </li>
 
-                    <!--<li class="<?php if ($page_name == 'grade') echo 'active'; ?> ">
+                    <li class="<?php if ($page_name == 'grade') echo 'active'; ?> ">
                         <a href="<?php echo base_url(); ?>admin/grade">
                         <i class="fa fa-angle-double-right p-r-10"></i>
                            <span class="hide-menu"><?php echo get_phrase('exam_grades'); ?></span>
                         </a>
-                    </li>-->
+                    </li>
 
                     <li class="<?php if ($page_name == 'createExamination') echo 'active'; ?> ">
                         <a href="<?php echo base_url(); ?>admin/createExamination">
@@ -382,7 +363,10 @@
                  </ul>
                 </li>
 
+    -->
+    
 
+<!--
            <li> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-bar-chart-o p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('student_scores');?><span class="fa arrow"></span></span></a>
         
                         <ul class=" nav nav-second-level<?php
@@ -410,8 +394,10 @@
   
                  </ul>
                 </li>
+
+    -->
                     
-                    
+                    <!--
         <li class="collect_fee"> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-paypal p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('fee_collection');?><span class="fa arrow"></span></span></a>
         
                         <ul class=" nav nav-second-level<?php
@@ -443,10 +429,10 @@
                 </li>
                 
                 
-                   
+    -->
                 
                                     
-                    <li> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-fax p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('expenses');?><span class="fa arrow"></span></span></a>
+                    <li> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-fax p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('Payments');?><span class="fa arrow"></span></span></a>
         
                         <ul class=" nav nav-second-level<?php
             if ($page_name == 'expense' ||
@@ -454,6 +440,13 @@
                 echo 'opened active';
             ?> ">
                      
+                     <li class="<?php if ($page_name == 'expense_category') echo 'active'; ?> ">
+                        <a href="<?php echo base_url(); ?>expense/expense_category">
+                        <i class="fa fa-angle-double-right p-r-10"></i>
+                             <span class="hide-menu"><?php echo get_phrase('Money Category'); ?></span>
+                        </a>
+                    </li>
+
                  <li class="<?php if ($page_name == 'expense') echo 'active'; ?> ">
                         <a href="<?php echo base_url(); ?>expense/expense">
                         <i class="fa fa-angle-double-right p-r-10"></i>
@@ -463,51 +456,42 @@
 
 
 
-                    <li class="<?php if ($page_name == 'expense_category') echo 'active'; ?> ">
-                        <a href="<?php echo base_url(); ?>expense/expense_category">
-                        <i class="fa fa-angle-double-right p-r-10"></i>
-                             <span class="hide-menu"><?php echo get_phrase('expense_category'); ?></span>
-                        </a>
-                    </li>
-     
+        
+
+
+
                  </ul>
                 </li>
                 
 
 
                 
-        <li> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-university p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('hostel_information');?><span class="fa arrow"></span></span></a>
+        <li> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-university p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('Manage Stores');?><span class="fa arrow"></span></span></a>
             <ul class=" nav nav-second-level<?php
-            if ($page_name == 'dormitory' ||
-                    $page_name == 'hostel_category' ||
+            if ($page_name == 'becyhastores' ||
+                    $page_name == 'categorys' ||
                     $page_name == 'room_type' ||
                     $page_name == 'hostel_room' )
                 echo 'opened active';
             ?>">
 
-                <li class="<?php if ($page_name == 'dormitory') echo 'active'; ?> ">
-                <a href="<?php echo base_url(); ?>admin/dormitory">
+                <li class="<?php if ($page_name == 'becyhastores') echo 'active'; ?> ">
+                <a href="<?php echo base_url(); ?>admin/becyhastores">
                 <i class="fa fa-angle-double-right p-r-10"></i>
-                   <span class="hide-menu"><?php echo get_phrase('manage_hostel'); ?></span>
+                   <span class="hide-menu"><?php echo get_phrase('New Store'); ?></span>
                 </a>
             </li>
 
 
-                    <li class="<?php if ($page_name == 'hostel_category') echo 'active'; ?> ">
-                        <a href="<?php echo base_url(); ?>admin/hostel_category">
+                    <li class="<?php if ($page_name == 'categorys') echo 'active'; ?> ">
+                        <a href="<?php echo base_url(); ?>admin/categorys">
                         <i class="fa fa-angle-double-right p-r-10"></i>
-                            <span class="hide-menu"><?php echo get_phrase('hostel_category'); ?></span>
+                            <span class="hide-menu"><?php echo get_phrase('Store Categories'); ?></span>
                         </a>
                     </li>
 
                     
-                    <li class="<?php if ($page_name == 'hostel_room') echo 'active'; ?> ">
-                        <a href="<?php echo base_url(); ?>admin/hostel_room">
-                        <i class="fa fa-angle-double-right p-r-10"></i>
-                            <span class="hide-menu"><?php echo get_phrase('hostel_room'); ?></span>
-                        </a>
-                    </li>
-     
+                    
                  </ul>
                 </li>
                 
@@ -522,24 +506,6 @@
                 echo 'opened active';
             ?>">
                 
-
-        
-                <li class="<?php if ($page_name == 'transport') echo 'active'; ?> ">
-                <a href="<?php echo base_url(); ?>transportation/transport">
-                <i class="fa fa-angle-double-right p-r-10"></i>
-                   <span class="hide-menu"><?php echo get_phrase('transports'); ?></span>
-                </a>
-            </li>
-
-
-                    <li class="<?php if ($page_name == 'transport_route') echo 'active'; ?> ">
-                        <a href="<?php echo base_url(); ?>transportation/transport_route">
-                        <i class="fa fa-angle-double-right p-r-10"></i>
-                            <span class="hide-menu"><?php echo get_phrase('transport_route'); ?></span>
-                        </a>
-                    </li>
-
-
                     
                      <li class="<?php if ($page_name == 'vehicle') echo 'active'; ?> ">
                         <a href="<?php echo base_url(); ?>transportation/vehicle">
@@ -553,7 +519,7 @@
                 </li>
 
         
-        <li> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-gears p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('system_settings');?><span class="fa arrow"></span></span></a>
+       <li> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-gears p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('system_settings');?><span class="fa arrow"></span></span></a>
         
         <ul class=" nav nav-second-level<?php
                 if ($page_name == 'system_settings' ||
@@ -598,7 +564,9 @@
                     </li>
      
                  </ul>
-                </li>
+          </li>
+
+    <!--
                 
                 
         <li> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-bar-chart-o p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('generate_reports');?><span class="fa arrow"></span></span></a>
@@ -630,6 +598,7 @@
      
                  </ul>
                 </li>
+    -->
 
 
         <?php $checking_level = $this->db->get_where('admin', array('admin_id' => $this->session->userdata('login_user_id')))->row()->level;?>
@@ -651,6 +620,26 @@
             </li>
         <?php endif;?>
 
+       
+<?php $check_admin_permission = $this->db->get_where('admin_role', array('admin_id' => $this->session->userdata('login_user_id')))->row()->manage_employee;?>
+    <?php if($check_admin_permission == '1'):?> 
+
+        <li class="staff"> <a href="javascript:void(0);" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-angle-double-right p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('Manage Employees');?><span class="fa arrow"></span></span></a>
+        
+                        <ul class=" nav nav-second-level<?php if ($page_name == 'Employee')echo 'opened active';?> ">
+
+						
+							<li class="<?php if ($page_name == 'employee') echo 'active'; ?> ">
+								<a href="<?php echo base_url(); ?>admin/employee">
+								<i class="fa fa-angle-double-right p-r-10"></i>
+									 <span class="hide-menu"><?php echo get_phrase('Manager'); ?></span>
+								</a>
+							</li>
+
+                 		</ul>
+   	 </li>
+    <?php endif;?> 
+
         <?php $checking_level = $this->db->get_where('admin', array('admin_id' => $this->session->userdata('login_user_id')))->row()->level;?>
         <?php if($checking_level == '2'):?>
        
@@ -663,7 +652,7 @@
                         </li>
         <?php endif;?>
 
-
+        
                 <li class="">
                         <a href="<?php echo base_url(); ?>login/logout">
                         <i class="fa fa-sign-out p-r-10"></i>
@@ -675,4 +664,5 @@
                 </ul>
             </div>
         </div>
+
 <!-- Left navbar-header end -->

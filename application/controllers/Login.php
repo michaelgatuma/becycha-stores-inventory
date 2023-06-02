@@ -10,24 +10,24 @@ class Login extends CI_Controller {
 		$this->load->library('session');
     }
 
-    //***************** The function below redirects to logged in user area
+    //***************** The function below redirects to logged-in user area
     public function index() {
 
         if ($this->session->userdata('admin_login')== 1) redirect (base_url(). 'admin/dashboard');
-        if ($this->session->userdata('hrm_login')== 1) redirect (base_url(). 'hrm/dashboard'); 
+        if ($this->session->userdata('hrm_login')== 1) redirect (base_url(). 'hrm/dashboard');
         if ($this->session->userdata('hostel_login')== 1) redirect (base_url(). 'hostel/dashboard');
         if ($this->session->userdata('accountant_login')== 1) redirect (base_url(). 'accountant/dashboard');
-        if ($this->session->userdata('librarian_login')== 1) redirect (base_url(). 'librarian/dashboard'); 
-        if ($this->session->userdata('teacher_login')== 1) redirect (base_url(). 'teacher/dashboard');   
-        if ($this->session->userdata('parent_login')== 1) redirect (base_url(). 'parent/dashboard'); 
-        if ($this->session->userdata('student_login')== 1) redirect (base_url(). 'student/dashboard'); 
+        if ($this->session->userdata('librarian_login')== 1) redirect (base_url(). 'librarian/dashboard');
+        if ($this->session->userdata('teacher_login')== 1) redirect (base_url(). 'employee/dashboard');
+        if ($this->session->userdata('parent_login')== 1) redirect (base_url(). 'parent/dashboard');
+        if ($this->session->userdata('student_login')== 1) redirect (base_url(). 'student/dashboard');
         $this->load->view('backend/login');
     }
   //***************** / The function below redirects to logged in user area
 
-  //********************************** the function below validating user login request 
+  //********************************** the function below validating user login request
     function validate_login() {
-      
+
         $login_check_model = $this->login_model->loginFunctionForAllUsers();
         $login_user = $this->session->userdata('login_type');
         if(!$login_check_model){
@@ -68,7 +68,7 @@ class Login extends CI_Controller {
         }
         if($login_user == 'teacher') {
           $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
-          redirect(base_url() . 'teacher/dashboard', 'refresh');
+          redirect(base_url() . 'employee/dashboard', 'refresh');
         }
      }
 
@@ -105,5 +105,5 @@ class Login extends CI_Controller {
      }
 
 
-    
+
 }

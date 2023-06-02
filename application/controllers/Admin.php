@@ -74,126 +74,414 @@ class Admin extends CI_Controller {
     }
 
 
-    function enquiry_category($param1 = null, $param2 = null, $param3 = null){
+    function Pet($param1 = null, $param2 = null, $param3 = null){
 
     if($param1 == 'insert'){
    
-        $this->crud_model->enquiry_category();
+        $this->crud_model->insert_Pet();
 
         $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
-        redirect(base_url(). 'admin/enquiry_category', 'refresh');
+        redirect(base_url(). 'admin/Pet', 'refresh');
     }
 
     if($param1 == 'update'){
 
-       $this->crud_model->update_category($param2);
+       $this->crud_model->update_Pet($param2);
 
 
         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-        redirect(base_url(). 'admin/enquiry_category', 'refresh');
+        redirect(base_url(). 'admin/Pet', 'refresh');
 
         }
 
     if($param1 == 'delete'){
 
-       $this->crud_model->delete_category($param2);
+       $this->crud_model->delete_Pet($param2);
         $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-        redirect(base_url(). 'admin/enquiry_category', 'refresh');
+        redirect(base_url(). 'admin/Pet', 'refresh');
 
         }
 
-        $page_data['page_name']     = 'enquiry_category';
-        $page_data['page_title']    = get_phrase('Manage Category');
-        $page_data['enquiry_category']  = $this->db->get('enquiry_category')->result_array();
-        $this->load->view('backend/index', $page_data);
-
-    }
-
-
-    function list_enquiry ($param1 = null, $param2 = null, $param3 = null){
-
-
-        if($param1 == 'delete')
-        {
-            $this->crud_model->delete_enquiry($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-            redirect(base_url(). 'admin/list_enquiry', 'refresh');
-    
-        }
-
-        $page_data['page_name']     = 'list_enquiry';
-        $page_data['page_title']    = get_phrase('All Enquiries');
-        $page_data['select_enquiry']  = $this->db->get('enquiry')->result_array();
+        $page_data['page_name']     = 'Pet';
+        $page_data['page_title']    = get_phrase('New Pet Sales');
+        $page_data['select_Pet']  = $this->db->get('Pet')->result_array();
         $this->load->view('backend/index', $page_data);
 
     }
 
 
 
-    function club ($param1 = null, $param2 = null, $param3 = null){
+
+
+
+    function RGB ($param1 = null, $param2 = null, $param3 = null){
 
         if($param1 == 'insert'){
-            $this->crud_model->insert_club();
+            $this->crud_model->insert_RGB();
             $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
-            redirect(base_url(). 'admin/club', 'refresh');
+            redirect(base_url(). 'admin/RGB', 'refresh');
         }
 
         if($param1 == 'update'){
-            $this->crud_model->update_club($param2);
+            $this->crud_model->update_RGB($param2);
             $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-            redirect(base_url(). 'admin/club', 'refresh');
+            redirect(base_url(). 'admin/RGB', 'refresh');
         }
 
 
         if($param1 == 'delete'){
-            $this->crud_model->delete_club($param2);
+            $this->crud_model->delete_RGB($param2);
             $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-            redirect(base_url(). 'admin/club', 'refresh');
+            redirect(base_url(). 'admin/RGB', 'refresh');
     
             }
 
 
-        $page_data['page_name']     = 'club';
-        $page_data['page_title']    = get_phrase('Manage Club');
-        $page_data['select_club']  = $this->db->get('club')->result_array();
+        $page_data['page_name']     = 'RGB';
+        $page_data['page_title']    = get_phrase('RGB New Sales');
+        $page_data['select_RGB']  = $this->db->get('RGB')->result_array();
         $this->load->view('backend/index', $page_data);
 
     }
 
 
-    function circular($param1 = null, $param2 = null, $param3 = null){
+    function energy_drink($param1 = null, $param2 = null, $param3 = null){
 
         if ($param1 == 'insert'){
 
-            $this->crud_model->insert_circular();
+            $this->crud_model->insert_energy_drink();
             $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
-            redirect(base_url(). 'admin/circular', 'refresh');
+            redirect(base_url(). 'admin/energy_drink', 'refresh');
         }
 
 
         if($param1 == 'update'){
 
-            $this->crud_model->update_circular($param2);
+            $this->crud_model->update_energy_drink($param2);
             $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
-            redirect(base_url(). 'admin/circular', 'refresh');
+            redirect(base_url(). 'admin/energy_drink', 'refresh');
 
         }
 
 
         if($param1 == 'delete'){
-            $this->crud_model->delete_circular($param2);
+            $this->crud_model->delete_energy_drink($param2);
             $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
-            redirect(base_url(). 'admin/circular', 'refresh');
+            redirect(base_url(). 'admin/energy_drink', 'refresh');
 
 
         }
 
-        $page_data['page_name']         = 'circular';
-        $page_data['page_title']        = get_phrase('Manage Circular');
-        $page_data['select_circular']   = $this->db->get('circular')->result_array();
+        $page_data['page_name']         = 'energy_drink';
+        $page_data['page_title']        = get_phrase('New energy Drink Sales');
+        $page_data['select_energy_drink']   = $this->db->get('energy_drink')->result_array();
         $this->load->view('backend/index', $page_data);
 
     }
+
+
+
+
+
+
+
+
+    
+    function juice($param1 = null, $param2 = null, $param3 = null){
+
+        if ($param1 == 'insert'){
+
+            $this->crud_model->insert_juice();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            redirect(base_url(). 'admin/juice', 'refresh');
+        }
+
+
+        if($param1 == 'update'){
+
+            $this->crud_model->update_juice($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            redirect(base_url(). 'admin/juice', 'refresh');
+
+        }
+
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_juice($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            redirect(base_url(). 'admin/juice', 'refresh');
+
+
+        }
+
+        $page_data['page_name']         = 'juice';
+        $page_data['page_title']        = get_phrase('New juice Sales');
+        $page_data['select_juice']   = $this->db->get('juice')->result_array();
+        $this->load->view('backend/index', $page_data);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    function water($param1 = null, $param2 = null, $param3 = null){
+
+        if ($param1 == 'insert'){
+
+            $this->crud_model->insert_water();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            redirect(base_url(). 'admin/water', 'refresh');
+        }
+
+
+        if($param1 == 'update'){
+
+            $this->crud_model->update_water($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            redirect(base_url(). 'admin/water', 'refresh');
+
+        }
+
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_water($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            redirect(base_url(). 'admin/water', 'refresh');
+
+
+        }
+
+        $page_data['page_name']         = 'water';
+        $page_data['page_title']        = get_phrase('New water Sales');
+        $page_data['select_water']   = $this->db->get('water')->result_array();
+        $this->load->view('backend/index', $page_data);
+
+    }
+
+
+
+
+
+
+    function pet_del($param1 = null, $param2 = null, $param3 = null){
+
+        if ($param1 == 'insert'){
+
+            $this->crud_model->insert_pet_del();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            redirect(base_url(). 'admin/pet_del', 'refresh');
+        }
+
+
+        if($param1 == 'update'){
+
+            $this->crud_model->update_pet_del($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            redirect(base_url(). 'admin/pet_del', 'refresh');
+
+        }
+
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_pet_del($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            redirect(base_url(). 'admin/pet_del', 'refresh');
+
+
+        }
+
+        $page_data['page_name']         = 'pet_del';
+        $page_data['page_title']        = get_phrase('New Pet Deliveries');
+        $page_data['select_pet_del']   = $this->db->get('pet_del')->result_array();
+        $this->load->view('backend/index', $page_data);
+
+    }
+
+
+
+
+
+
+
+
+    
+    function rgb_del($param1 = null, $param2 = null, $param3 = null){
+
+        if ($param1 == 'insert'){
+
+            $this->crud_model->insert_rgb_del();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            redirect(base_url(). 'admin/rgb_del', 'refresh');
+        }
+
+
+        if($param1 == 'update'){
+
+            $this->crud_model->update_rgb_del($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            redirect(base_url(). 'admin/rgb_del', 'refresh');
+
+        }
+
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_rgb_del($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            redirect(base_url(). 'admin/rgb_del', 'refresh');
+
+
+        }
+
+        $page_data['page_name']         = 'rgb_del';
+        $page_data['page_title']        = get_phrase('New RGB Deliveries');
+        $page_data['select_rgb_del']   = $this->db->get('rgb_del')->result_array();
+        $this->load->view('backend/index', $page_data);
+
+    }
+
+
+
+
+
+
+    function Drink_energy($param1 = null, $param2 = null, $param3 = null){
+
+        if ($param1 == 'insert'){
+
+            $this->crud_model->insert_Drink_energy();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            redirect(base_url(). 'admin/Drink_energy', 'refresh');
+        }
+
+
+        if($param1 == 'update'){
+
+            $this->crud_model->update_Drink_energy($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            redirect(base_url(). 'admin/Drink_energy', 'refresh');
+
+        }
+
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_Drink_energy($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            redirect(base_url(). 'admin/Drink_energy', 'refresh');
+
+
+        }
+
+        $page_data['page_name']         = 'Drink_energy';
+        $page_data['page_title']        = get_phrase('New Energy Drink Deliveries');
+        $page_data['select_Drink_energy']   = $this->db->get('Drink_energy')->result_array();
+        $this->load->view('backend/index', $page_data);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    function minute($param1 = null, $param2 = null, $param3 = null){
+
+        if ($param1 == 'insert'){
+
+            $this->crud_model->insert_minute();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            redirect(base_url(). 'admin/minute', 'refresh');
+        }
+
+
+        if($param1 == 'update'){
+
+            $this->crud_model->update_minute($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            redirect(base_url(). 'admin/minute', 'refresh');
+
+        }
+
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_minute($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            redirect(base_url(). 'admin/minute', 'refresh');
+
+
+        }
+
+        $page_data['page_name']         = 'minute';
+        $page_data['page_title']        = get_phrase('New minute Deliveries');
+        $page_data['select_minute']   = $this->db->get('minute')->result_array();
+        $this->load->view('backend/index', $page_data);
+
+    }
+
+
+
+
+    
+
+    function maji($param1 = null, $param2 = null, $param3 = null){
+
+        if ($param1 == 'insert'){
+
+            $this->crud_model->insert_maji();
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully saved'));
+            redirect(base_url(). 'admin/maji', 'refresh');
+        }
+
+
+        if($param1 == 'update'){
+
+            $this->crud_model->update_maji($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully updated'));
+            redirect(base_url(). 'admin/maji', 'refresh');
+
+        }
+
+
+        if($param1 == 'delete'){
+            $this->crud_model->delete_maji($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data successfully deleted'));
+            redirect(base_url(). 'admin/maji', 'refresh');
+
+
+        }
+
+        $page_data['page_name']         = 'maji';
+        $page_data['page_title']        = get_phrase('New water Deliveries');
+        $page_data['select_maji']   = $this->db->get('maji')->result_array();
+        $this->load->view('backend/index', $page_data);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     function parent($param1 = null, $param2 = null, $param3 = null){
@@ -374,30 +662,30 @@ class Admin extends CI_Controller {
     }
 
 
-    /***********  The function manages school dormitory  ***********************/
-    function dormitory ($param1 = null, $param2 = null, $param3 = null){
+    /***********  The function manages school becyastores  ***********************/
+    function becyastores ($param1 = null, $param2 = null, $param3 = null){
 
     if($param1 == 'create'){
         $this->dormitory_model->createDormitoryFunction();
         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-        redirect(base_url(). 'admin/dormitory', 'refresh');
+        redirect(base_url(). 'admin/becyastores', 'refresh');
     }
 
     if($param1 == 'update'){
         $this->dormitory_model->updateDormitoryFunction($param2);
         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-        redirect(base_url(). 'admin/dormitory', 'refresh');
+        redirect(base_url(). 'admin/becyastores', 'refresh');
     }
 
 
     if($param1 == 'delete'){
         $this->dormitory_model->deleteDormitoryFunction($param2);
         $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-        redirect(base_url(). 'admin/dormitory', 'refresh');
+        redirect(base_url(). 'admin/becyastores', 'refresh');
 
     }
 
-    $page_data['page_name']     = 'dormitory';
+    $page_data['page_name']     = 'becyastores';
     $page_data['page_title']    = get_phrase('Manage Dormitory');
     $this->load->view('backend/index', $page_data);
 
@@ -435,29 +723,29 @@ class Admin extends CI_Controller {
 
 
     /***********  The function manages hostel category  ***********************/
-    function hostel_category ($param1 = null, $param2 = null, $param3 = null){
+    function categorys ($param1 = null, $param2 = null, $param3 = null){
 
     if($param1 == 'create'){
         $this->dormitory_model->createHostelCategoryFunction();
         $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
-        redirect(base_url(). 'admin/hostel_category', 'refresh');
+        redirect(base_url(). 'admin/categorys', 'refresh');
     }
 
     if($param1 == 'update'){
         $this->dormitory_model->updateHostelCategoryFunction($param2);
         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-        redirect(base_url(). 'admin/hostel_category', 'refresh');
+        redirect(base_url(). 'admin/categorys', 'refresh');
     }
 
 
     if($param1 == 'delete'){
         $this->dormitory_model->deleteHostelCategoryFunction($param2);
         $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-        redirect(base_url(). 'admin/hostel_category', 'refresh');
+        redirect(base_url(). 'admin/categorys', 'refresh');
 
     }
 
-    $page_data['page_name']     = 'hostel_category';
+    $page_data['page_name']     = 'categorys';
     $page_data['page_title']    = get_phrase('Hostel Category');
     $this->load->view('backend/index', $page_data);
     }

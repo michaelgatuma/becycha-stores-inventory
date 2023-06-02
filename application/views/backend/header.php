@@ -1,7 +1,7 @@
  <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-                <div class="top-left-part"><a class="logo" href="#"><b><img src="<?php echo base_url();?>uploads/logo.png" width="50" height="50" alt="home" /></b><span class="hidden-xs"><strong>OPEN</strong> SOURCE</span></a></div>
+                <div class="top-left-part"><a class="logo" href="#"><b><img src="<?php echo base_url();?>uploads/logo.png" width="50" height="50" alt="home" /></b><span class="hidden-xs"><strong>Becyha stores LTD</strong> </span></a></div>
                     <ul class="nav navbar-top-links navbar-left hidden-xs">
                         <li><a href="javascript:void(0)" class="open-close hidden-xs "><i class="icon-arrow-left-circle ti-menu"></i></a></li>
                         <li>
@@ -114,9 +114,9 @@
 
                             <?php
                             $key = $this->session->userdata('login_type') . '_id';
-                            $face_file = 'uploads/' . $this->session->userdata('login_type') . '_image/' . $this->session->userdata($key) . '.jpg';
+                            $face_file = 'uploads/' . $this->session->userdata('login_type') . '_image/' . $this->session->userdata($key) . '.jpeg';
                             if (!file_exists($face_file)) {
-                                $face_file = 'uploads/default.jpg';                                 
+                                $face_file = 'uploads/default.jpeg';                                 
                             }
                             ?>
 
