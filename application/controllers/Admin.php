@@ -1332,4 +1332,175 @@ class Admin extends CI_Controller {
         redirect(base_url(). 'admin/newAdministrator', 'refresh');
     }
 
+    public function add_product() {
+        $this->load->model('Product_model');
+        // Load the 'add_product' view
+        $page_data['page_name']         = 'add_product';
+        $page_data['page_title']        = get_phrase('New Product');
+        $page_data['products']   = $this->Product_model->getAllProducts();
+        $this->load->view('backend/index', $page_data);
+//        redirect(base_url(). 'admin/add_product', 'refresh');
+    }
+
+    // Add a new product to the database
+    public function create_product(){
+        // Validate the form inputs
+        $this->form_validation->set_rules('product_name', 'Product Name', 'trim|required');
+        $this->form_validation->set_rules('product_type', 'Product Type', 'trim|required');
+        $this->form_validation->set_rules('flavour', 'Flavour', 'trim|required');
+        $this->form_validation->set_rules('volume_size', 'Volume Size', 'trim|required');
+        $this->form_validation->set_rules('stock_qty', 'Stock Quantity', 'trim|required|numeric');
+
+        if (!$this->form_validation->run()) {
+            // Form validation failed, show error or redirect back to the form with error messages
+            // Handle the validation error case according to your application's requirements
+            $this->session->set_flashdata('error_message', $this->form_validation->error_array()[0]);
+        } else {
+            // Form validation passed, insert the product into the database
+
+            // Get the form input values
+            $productData = array(
+                'product_name' => $this->input->post('product_name'),
+                'product_type' => $this->input->post('product_type'),
+                'flavour' => $this->input->post('flavour'),
+                'volume_size' => $this->input->post('volume_size'),
+                'stock_qty' => $this->input->post('stock_qty')
+            );
+
+            // Insert the product data into the database
+//            $this->db->insert('bs_products', $productData);
+
+            $this->load->model('Product_model');
+            $this->Product_model->insertProduct($productData);
+
+            // Redirect to a success page or display a success message
+            // Handle the success case according to your application's requirements
+            $this->session->set_flashdata('flash_message', get_phrase('Product added successfully'));
+        }
+        redirect(base_url(). 'admin/add_product', 'refresh');
+    }
+
+    public function get_product_variations() {
+        $flavours = [
+            "pet" => [
+                "Coke",
+                "Diet Coke",
+                "Coke Zero",
+                "Fanta Orange",
+                "Fanta Blackcurrant",
+                "Fanta Pineapple",
+                "Sprite",
+                "Krest",
+                "Stoney",
+                "Assault",
+                "Khaos",
+                "Mango",
+                "Normal"
+            ],
+            "rgb"=>[
+                "Coke",
+                "Diet Coke",
+                "Coke Zero",
+                "Fanta Orange",
+                "Fanta Blackcurrant",
+                "Fanta Pineapple",
+                "Sprite",
+                "Krest",
+                "Stoney",
+                "Assault",
+                "Khaos",
+                "Mango",
+                "Normal"
+            ],
+            "energy"=>[
+                "Predator",
+                "Play",
+                "Monster",
+                "Red Bull",
+                "Power Play",
+            ],
+            "minutemaid"=>[
+                "Orange",
+                "Mango",
+                "Apple",
+                "Pineapple",
+                "Mixed Fruit",
+                "Guava",
+                "Peach",
+            ],
+            "water"=>[
+                "Dasani",
+                "Keringet",
+                "Valley",
+                "Other"
+            ]
+        ];
+        $volumes=[
+            "pet"=>[
+                "300ml",
+                "500ml",
+                "1 Liter",
+                "1.5 Liter",
+                "2 Liter",
+                "Other"
+            ],
+            "rgb"=>[
+                "200ml",
+                "300ml",
+                "500ml",
+                "1 Liter",
+                "Other"
+            ],
+            "energy"=>[
+                "250ml",
+                "400ml",
+                "Other"
+            ],
+            "minutemaid"=>[
+                "250ml",
+                "500ml",
+                "Other"
+            ],
+            "water"=>[
+                "500ml",
+                "1 Liter",
+                "1.5 Liter",
+                "Other"
+            ]
+        ];
+        // Get the selected product type from the AJAX request
+        $productType = $this->input->post('product_type');
+
+        // Perform necessary database queries to fetch options based on the product type
+        // Replace the example queries with your actual database queries
+
+        // Query to fetch flavours based on the selected product type
+        $flavourOptions = $flavours[$productType];
+
+        // Query to fetch volume sizes based on the selected product type
+        $volumeSizeOptions = $volumes[$productType];
+
+        // Prepare the options as HTML for the dropdowns
+        $flavourHtml = '<option value="">Select Flavour</option>';
+        foreach ($flavourOptions as $option) {
+            $flavourHtml .= '<option value="' . $option . '">' . $option . '</option>';
+        }
+
+        $volumeSizeHtml = '<option value="">Select Volume Size</option>';
+        foreach ($volumeSizeOptions as $option) {
+            $volumeSizeHtml .= '<option value="' . $option . '">' . $option . '</option>';
+        }
+
+        // Prepare the response as JSON
+        $response = [
+            'flavours' => $flavourHtml,
+            'volume_sizes' => $volumeSizeHtml
+        ];
+
+        // Send the JSON response back to the AJAX request
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+    }
+
 }
