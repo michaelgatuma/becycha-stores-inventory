@@ -88,9 +88,6 @@
                                 <td><?php echo $product->flavour; ?></td>
                                 <td><?php echo $product->volume_size; ?></td>
                                 <td><?php echo $product->stock_qty; ?></td>
-                                <td>
-                                    Edit
-                                </td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>

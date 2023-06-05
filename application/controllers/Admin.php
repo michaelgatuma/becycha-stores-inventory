@@ -1612,4 +1612,13 @@ class Admin extends CI_Controller {
         echo json_encode($response);
     }
 
+    public function stock_transactions(){
+        $this->load->model('Stock_transaction_model');
+        // Load the 'add_product' view
+        $page_data['page_name']         = 'stock_transactions';
+        $page_data['page_title']        = get_phrase('Stock Transactions');
+        $page_data['transactions'] = $this->Stock_transaction_model->getTransactionList();
+        $this->load->view('backend/index', $page_data);
+    }
+
 }
