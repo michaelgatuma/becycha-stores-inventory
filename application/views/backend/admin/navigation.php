@@ -651,6 +651,14 @@
                 </li>
             <?php endif; ?>
 
+            <!--Customers Listing-->
+            <?php $check_admin_permission = $this->db->get_where('admin_role', array('admin_id' => $this->session->userdata('login_user_id')))->row()->manage_academics; ?>
+            <?php if ($check_admin_permission == '1'): ?>
+                <li><a href="<?php echo base_url(); ?>admin/customers" class="waves-effect"><i
+                                class="fa fa-users p-r-10 text-success"></i> <span
+                                class="hide-menu  text-success"><?php echo get_phrase('Customers List'); ?></span></a></li>
+            <?php endif; ?>
+
             <?php $checking_level = $this->db->get_where('admin', array('admin_id' => $this->session->userdata('login_user_id')))->row()->level; ?>
             <?php if ($checking_level == '2'): ?>
 

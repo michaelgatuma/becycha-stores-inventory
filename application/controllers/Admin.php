@@ -1621,4 +1621,14 @@ class Admin extends CI_Controller {
         $this->load->view('backend/index', $page_data);
     }
 
+    //display list of customers
+    public function customers(){
+        $this->load->model('Customer_model');
+        // Load the 'add_product' view
+        $page_data['page_name']         = 'customers_list';
+        $page_data['page_title']        = get_phrase('Customers');
+        $page_data['customers'] = $this->Customer_model->getCustomerList();
+        $this->load->view('backend/index', $page_data);
+    }
+
 }
