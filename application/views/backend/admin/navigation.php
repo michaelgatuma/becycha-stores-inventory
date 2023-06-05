@@ -72,7 +72,7 @@
             <?php if ($check_admin_permission == '1'): ?>
                 <li><a href="<?php echo base_url(); ?>admin/add_product" class="waves-effect"><i
                                 class="fa fa-plus p-r-10 text-success"></i> <span
-                                class="hide-menu  text-success"><?php echo get_phrase('Add Product'); ?></span></a></li>
+                                class="hide-menu  text-success"><?php echo get_phrase('Add SKU'); ?></span></a></li>
             <?php endif; ?>
 
             <!---  Permission for Admin Manage Academics starts here ------>
