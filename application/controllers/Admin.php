@@ -1545,7 +1545,7 @@ class Admin extends CI_Controller {
 
             // Update product stock quantity
             $this->load->model('Product_model');
-            $this->Product_model->updateStockQuantity($productId,$stockQty);
+            $this->Product_model->updateStockQuantity($productId,$stockQty,'delivery');
 
             // Redirect to a success page or display a success message
             // Handle the success case according to your application's requirements
@@ -1556,12 +1556,60 @@ class Admin extends CI_Controller {
 
     public function add_sale(){
         $this->load->model('Product_model');
-//        $this->load->model('Stock_transaction_model');
+        $this->load->model('Stock_transaction_model');
         // Load the 'add_product' view
         $page_data['page_name']         = 'add_sale';
         $page_data['page_title']        = get_phrase('New Sale');
         $page_data['products']   = $this->Product_model->getAllProducts();
+        $page_data['receipt_no'] = $this->Stock_transaction_model->getReceiptNumber();
         $this->load->view('backend/index', $page_data);
+    }
+
+    public function create_sale(){
+        // Validate the form inputs
+        $this->form_validation->set_rules('receipt_no', 'Receipt No.', 'trim|required');
+        $this->form_validation->set_rules('product_id', 'Product', 'trim|required|numeric');
+        $this->form_validation->set_rules('stock_qty', 'Stock Quantity', 'trim|required|numeric');
+        $this->form_validation->set_rules('date', 'Delivery date', 'trim|required');
+
+        if (!$this->form_validation->run()) {
+            // Form validation failed, show error or redirect back to the form with error messages
+            // Handle the validation error case according to your application's requirements
+            $this->session->set_flashdata('error_message', $this->form_validation->error_array()[0]);
+        } else {
+            // Form validation succeeded, continue to process the data
+            // Get the product data from the form
+            $receiptNo = $this->input->post('receipt_no');
+            $productId= $this->input->post('product_id');
+            $stockQty = $this->input->post('stock_qty');
+            $date = $this->input->post('date');
+
+            // Save transaction data to the database
+            $this->load->model('Stock_transaction_model');
+            $this->Stock_transaction_model->recordTransaction($receiptNo, $productId, '', 'sale', $stockQty, $date) ;
+
+            // Update product stock quantity
+            $this->load->model('Product_model');
+            $this->Product_model->updateStockQuantity($productId,$stockQty,'sale');
+
+            // Redirect to a success page or display a success message
+            // Handle the success case according to your application's requirements
+            $this->session->set_flashdata('flash_message', get_phrase('Product sold!'));
+        }
+        redirect(base_url(). 'admin/add_sale', 'refresh');
+    }
+
+    public function fetch_stock($productId) {
+        // Logic to fetch the current stock based on the product ID
+        // Replace this with your actual logic to retrieve the stock from the database or any other source
+
+        $this->load->model('Product_model');
+        $currentStock = $this->Product_model->getProductStockQuantity($productId);
+
+        // Return the stock as a JSON response
+        $response = array('stock' => $currentStock);
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 
 }

@@ -14,6 +14,15 @@ class Stock_transaction_model extends CI_Model {
         return 'BSI-'.str_pad($n, 3, '0', STR_PAD_LEFT);
     }
 
+    public function getReceiptNumber() {
+        $query = $this->db->select('id')
+            ->order_by('id','DESC')
+            ->get('bs_stock_transactions');
+        $result = $query->row();
+        $n = ($result) ? ($result->id+1) : 1;
+        return 'BSO-'.str_pad($n, 3, '0', STR_PAD_LEFT);
+    }
+
     public function recordTransaction($transactionRef, $productId, $vehicleNo, $transactionType, $quantity, $transactionDate) {
         $data = array(
             'product_id' => $productId,

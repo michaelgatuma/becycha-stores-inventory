@@ -23,16 +23,33 @@ class Product_model extends CI_Model {
         return $query->result();
     }
 
-    public function updateStockQuantity($productId, $newQuantity) {
-        $newQuantity = $this->getProductStockQuantity($productId) + $newQuantity;
-        $this->db->set('stock_qty', $newQuantity);
-        $this->db->where('id', $productId);
-        $this->db->update('bs_products');
+    public function updateStockQuantity($productId, $newQuantity, $transactionType) {
+        if ($transactionType == 'sale') {
+            $this->decreaseStockQuantity($productId, $newQuantity);
+        } else if ($transactionType == 'delivery') {
+            $this->increaseStockQuantity($productId, $newQuantity);
+        }
     }
 
     public function getProductStockQuantity($productId) {
         $query = $this->db->select('stock_qty')->get_where('bs_products', array('id' => $productId));
         $result = $query->row();
         return ($result) ? $result->stock_qty : 0;
+    }
+
+    private function increaseStockQuantity($productId, $newQuantity)
+    {
+        $newQuantity = $this->getProductStockQuantity($productId) + $newQuantity;
+        $this->db->set('stock_qty', $newQuantity);
+        $this->db->where('id', $productId);
+        $this->db->update('bs_products');
+    }
+
+    private function decreaseStockQuantity($productId, $newQuantity)
+    {
+        $newQuantity = $this->getProductStockQuantity($productId) - $newQuantity;
+        $this->db->set('stock_qty', $newQuantity);
+        $this->db->where('id', $productId);
+        $this->db->update('bs_products');
     }
 }
