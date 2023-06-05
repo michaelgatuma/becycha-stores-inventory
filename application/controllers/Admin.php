@@ -1336,7 +1336,7 @@ class Admin extends CI_Controller {
         $this->load->model('Product_model');
         // Load the 'add_product' view
         $page_data['page_name']         = 'add_product';
-        $page_data['page_title']        = get_phrase('New Product');
+        $page_data['page_title']        = get_phrase('New Product SKU');
         $page_data['products']   = $this->Product_model->getAllProducts();
         $this->load->view('backend/index', $page_data);
 //        redirect(base_url(). 'admin/add_product', 'refresh');
@@ -1501,6 +1501,67 @@ class Admin extends CI_Controller {
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode($response));
+    }
+
+    // Add a new product to the database
+    public function record_delivery(){
+        $this->load->model('Product_model');
+        $this->load->model('Vehicle_model');
+        $this->load->model('Stock_transaction_model');
+        // Load the 'add_product' view
+        $page_data['page_name']         = 'record_delivery';
+        $page_data['page_title']        = get_phrase('New Delivery');
+        $page_data['products']   = $this->Product_model->getAllProducts();
+        $page_data['vehicles'] = $this->Vehicle_model->getAllVehicles();
+        $page_data['invoice_no'] = $this->Stock_transaction_model->getInvoiceNumber();
+        $this->load->view('backend/index', $page_data);
+    }
+
+    // Add a new delivery to the database
+    public function create_delivery(){
+        // Validate the form inputs
+        $this->form_validation->set_rules('invoice_no', 'Delivery/ Tracking No.', 'trim|required');
+        $this->form_validation->set_rules('product_id', 'Product', 'trim|required|numeric');
+        $this->form_validation->set_rules('vehicle', 'Vehicle', 'trim|required');
+        $this->form_validation->set_rules('stock_qty', 'Stock Quantity', 'trim|required|numeric');
+        $this->form_validation->set_rules('date', 'Delivery date', 'trim|required');
+
+        if (!$this->form_validation->run()) {
+            // Form validation failed, show error or redirect back to the form with error messages
+            // Handle the validation error case according to your application's requirements
+            $this->session->set_flashdata('error_message', $this->form_validation->error_array()[0]);
+        } else {
+            // Form validation succeeded, continue to process the data
+            // Get the product data from the form
+            $invoiceNo = $this->input->post('invoice_no');
+            $productId= $this->input->post('product_id');
+            $vehicle = $this->input->post('vehicle');
+            $stockQty = $this->input->post('stock_qty');
+            $date = $this->input->post('date');
+
+            // Save transaction data to the database
+            $this->load->model('Stock_transaction_model');
+            $this->Stock_transaction_model->recordTransaction($invoiceNo, $productId, $vehicle, 'delivery', $stockQty, $date) ;
+
+            // Update product stock quantity
+            $this->load->model('Product_model');
+            $this->Product_model->updateStockQuantity($productId,$stockQty);
+
+            // Redirect to a success page or display a success message
+            // Handle the success case according to your application's requirements
+            $this->session->set_flashdata('flash_message', get_phrase('Delivery recorded successfully'));
+        }
+        redirect(base_url(). 'admin/record_delivery', 'refresh');
+    }
+
+    public function add_sale(){
+        $this->load->model('Product_model');
+//        $this->load->model('Stock_transaction_model');
+        // Load the 'add_product' view
+        $page_data['page_name']         = 'add_sale';
+        $page_data['page_title']        = get_phrase('New Sale');
+        $page_data['products']   = $this->Product_model->getAllProducts();
+        $this->load->view('backend/index', $page_data);
     }
 
 }
